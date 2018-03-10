@@ -4,6 +4,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+      show:false,
+      imageArray: [
+      ],
+      current:0,
     windowHeight: wx.getSystemInfoSync().windowHeight,
     imageWidth: wx.getSystemInfoSync().windowWidth,
     topScroll: {
@@ -112,8 +116,9 @@ Page({
 
   // 点击推荐课程详情
   clickRecommendCurriculumView: function(e) {
+      
     wx.navigateTo({
-      url: '../details/classInfo/classInfo'
+        url: '../details/classInfo/classInfo?str=' + e.currentTarget.id
     })
   },
 
@@ -127,15 +132,24 @@ Page({
   //点击师资力量 
   clickTeachersView: function(e) {
     wx.navigateTo({
-      url: '../details/teacherInfo/teacherInfo'
+          url: '../details/teacherInfo/teacherInfo?str=' + e.currentTarget.id
     })
   },
 
   // 点击学员风采
   clickStuendtShows: function(e) {
-   
+      
+      this.setData({
+          show:true,
+          current: e.currentTarget.id,
+      });
+      console.log(this.data.studentShows.details);
   },
-
+  onHideImage: function (){
+      this.setData({
+          show: false,
+      })
+  },
   // 打开地图
   openMap: function () {
     wx.openLocation({
@@ -163,17 +177,21 @@ Page({
     var that = this
     this.openUrl(url, function (data) {
       var items = {};
+      let imageArray = [];
       for (var item in data) {
         var old = that.data.studentShows
         var dic = {
           id: data[item]["id"],
           imageUrl: data[item]["pic"],
         }
+        imageArray.push(dic);
         items[item] = dic
+        
       }
       old.details = items
       that.setData({
-        studentShows:old
+        studentShows:old,
+        imageArray: imageArray
       })
     })
   },

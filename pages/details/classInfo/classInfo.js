@@ -5,14 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    classInfo:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+      this.getclassinfo(options.str);
   },
 
   /**
@@ -62,5 +62,43 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  onJoinin: function(){
+    //   
+      wx.navigateTo({
+          url: '../appointment/appointment'
+      });  
+  },
+  // 打开接口
+  openUrl: function (url, data, completed) {
+      wx.request({
+          url: url,
+          data: data,
+          method: "POST",
+          header: {
+              'content-type': 'application/x-www-form-urlencoded' // 默认值
+          },
+          success: function (res) {
+              completed(res.data)
+          }
+      })
+  },
+  
+  getUrl: function (path) {
+      return 'https://www.qxyapp.com/index.php/Index/' + path
+  },
+  //   获取教师详情
+  getclassinfo: function (str) {
+      let url = this.getUrl("getclassinfo");
+      let data = {
+          'aid': '3',
+          'cid': str
+      }
+      this.openUrl(url, data, (data) => {
+          console.log(data);
+          this.setData({
+              classInfo: data
+          });
+      });
   }
 })

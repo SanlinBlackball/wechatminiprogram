@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -9,7 +9,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.1",
-	"appid": "wx430ae657b50cfef3",
+	"appid": "wx48ff977ed8fd0492",
 	"projectname": "WXTestDemo",
 	"isGameTourist": false,
 	"condition": {

@@ -10,7 +10,10 @@ Page({
   },
 
   clickCurriculumView:function(e) {
-    console.log(e.currentTarget.id)
+      wx.navigateTo({
+          url: '../details/classInfo/classInfo?str=' + e.currentTarget.id
+      })
+    // console.log(e.currentTarget.id)
   },
 
   /**

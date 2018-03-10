@@ -1,2 +1,13 @@
 <!--pages/details/newActivity/newActivity.wxml-->
-<text>pages/details/newActivity/newActivity.wxml</text>
+<scroll-view class='contain'>
+    <!--标题  -->
+    <view class='header'>{{data.title}}</view>
+    <!--时间  -->
+    <view class='time'>{{data.addtime}}</view>
+    <!--图片  -->
+    <image class='imageView' src='{{data.head_pic}}'/>
+    <!--内容  -->
+    <view class='content'>{{data.content}}</view>
+    
+</scroll-view>
+<!-- <text>pages/details/newActivity/newActivity.wxml</text> -->

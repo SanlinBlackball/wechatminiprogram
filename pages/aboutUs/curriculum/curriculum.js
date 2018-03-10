@@ -10,7 +10,10 @@ Page({
   },
 
   clickCurriculumView:function(e) {
-    console.log(e.currentTarget.id)
+    // console.log(e.currentTarget.id)
+    wx.navigateTo({
+        url: '../../details/classInfo/classInfo?str=' + e.currentTarget.id
+    })
   },
 
   /**
@@ -18,7 +21,7 @@ Page({
    */
   onLoad: function (options) {
     this.getAllClasses()
-  },
+  }, 
   // 获取所有课程
   getAllClasses: function () {
     var url = this.getUrl("getclasslist")
@@ -43,6 +46,7 @@ Page({
       that.setData({
         curriculums: old
       })
+      console.log(data);
     })
   },
 

@@ -12,7 +12,8 @@
     "pages/details/classInfo/classInfo",
     "pages/details/teacherInfo/teacherInfo",
     "pages/details/allTeachers/allTeachers",
-    "pages/details/allStudentShows/allStudentShows"
+    "pages/details/allStudentShows/allStudentShows",
+    "pages/details/appointment/appointment"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -73,3 +73,16 @@
     </view>
   </view>
 </template>
+<!--图片查看  -->
+<template name="showImageView">
+    <view style='display: flex;justify-content: center;align-content: center;height:100%;'>
+    <swiper style='width: 100%;height: 100%;'>
+        <block wx:for="{{imgUrls}}">
+        <swiper-item>
+            <image style='width: 100%;height: 100%;' src='{{imageUrl}}' mode = 'aspectFit' />
+        </swiper-item>
+        </block>
+    </swiper>
+        
+    </view>
+</template>

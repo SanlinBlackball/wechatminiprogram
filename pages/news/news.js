@@ -1,18 +1,20 @@
 // pages/news/news.js
+var util = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+      winddowWidth: wx.getSystemInfoSync().windowWidth,
+      data:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+      this.getarticle();
   },
 
   /**
@@ -62,5 +64,41 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  // 打开接口
+  openUrl: function (url, data, completed) {
+      wx.request({
+          url: url,
+          data: data,
+          method: "POST",
+          header: {
+              'content-type': 'application/x-www-form-urlencoded' // 默认值
+          },
+          success: function (res) {
+              completed(res.data)
+          }
+      })
+  },
+
+  getUrl: function (path) {
+      return 'https://www.qxyapp.com/index.php/Index/' + path
+  },
+  //   获取资讯
+  getarticle: function () {
+      let url = this.getUrl("getarticle");
+      let data = {
+          'aid': '3',
+      }
+      this.openUrl(url, data, (data) => {
+          console.log(data);
+          for (let i = 0; i < data.length;i++){
+              let date = new Date(parseInt(data[i].addtime)*1000);
+              data[i].newTime = util.formatTime(date);
+          }
+
+          this.setData({
+              data:data
+          });
+      });
   }
 })
